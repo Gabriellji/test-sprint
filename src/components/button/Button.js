@@ -1,8 +1,11 @@
 import React from 'react'
 import './Button.css';
 
-const Button = ({ category }) => (
-    <button className="categoty_btn">
+const Button = ({ id, category, onCategoryBtnClick }) => (
+    <button
+    key={id}
+    onClick={(e) => onCategoryBtnClick(e)}
+    className="categoty_btn">
         { category }
     </button>
 );
