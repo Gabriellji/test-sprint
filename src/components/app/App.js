@@ -49,11 +49,18 @@ class App extends Component {
     });
   }
 
+  onAllBtnClick = () => {
+    this.setState({
+      selectedCategory: null
+    });
+    // this.renderItems(arr)
+  }
+
   renderButtons = (arr) => {
     const filtered = arr.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);
-    console.log(filtered)
-    return filtered.map((element, index) => <Button
+    return filtered.map((element, index) =>
+     <Button
       onCategoryBtnClick={this.onCategoryBtnClick}
       category={element}
       key={index} />)
@@ -74,6 +81,9 @@ class App extends Component {
 
             </CardList> */}
         <div className="btn_wrap">
+        <button
+        onClick={() => this.onAllBtnClick()}
+        >All</button>
           {!loading && this.renderButtons(cardList)}
         </div>
         <div className="card-list_wrap">
