@@ -8,7 +8,7 @@ export default class CommerceService {
     }
 
     async getAllProducts() {
-        const res = await fetch(_apiBase);
+        const res = await fetch(this._apiBase);
         return await res.json();
     }
 
