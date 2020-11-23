@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import CommerceService from '../../services/commerce-service';
 import Card from '../card/Card';
 
+import './CardList.css'
+
 class CardList extends Component {
 
     commerceService = new CommerceService();

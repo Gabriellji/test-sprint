@@ -1,0 +1,13 @@
+.card_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid grey;
+}
+
+img {
+    width: 200px;
+}

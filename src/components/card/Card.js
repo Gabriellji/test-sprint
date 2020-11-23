@@ -6,7 +6,7 @@ const Card = ({ category, description, image, price, title }) => (
         <p>{category}</p>
         <h1>{title}</h1>
         <img src={image} alt={category} />
-        <p>{price}</p>
+        <p>{price}$</p>
         <p>{description}</p>
     </div>
 )
