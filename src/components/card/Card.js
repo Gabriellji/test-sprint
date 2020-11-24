@@ -15,6 +15,7 @@ const Card = ({ category, description, image, price, title, onFavoriteClick, isF
           }}
           className={isFavorite ? "isFavorite" : "notFavorite"}
         ></div>
+        <button>Add to cart</button>
     </div>
 )
 

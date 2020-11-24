@@ -49,7 +49,8 @@ export default class CommerceService {
             image: data.image,
             price: data.price,
             title: data.title,
-            isFavorite: false
+            isFavorite: false,
+            addedToCart: false
         }
     }
 }

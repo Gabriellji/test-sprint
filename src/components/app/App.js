@@ -59,16 +59,10 @@ class App extends Component {
     });
   }
 
-  onAllBtnClick = () => {
-    this.setState({
-      selectedCategory: 'all'
-    });
-  }
-
   renderButtons = (arr) => {
     const filtered = arr.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);
-      filtered.push('All');
+      filtered.push('Favorite', 'All');
     return filtered.map((element, index) =>
       <Button
         onCategoryBtnClick={this.onCategoryBtnClick}
@@ -79,15 +73,14 @@ class App extends Component {
 
   onCategoryFilter = (arr, category) => arr.filter(item => item.category === category)
 
+  onFavoriteFilter = (arr, category) => arr.filter(item => item[category] === true)
+
   render() {
 
     const { cardList, loading, selectedCategory } = this.state;
 
-    // const spinner = loading ? <Spinner /> : null;
-
     return (
       <div className="App">
-        {/* {spinner} */}
         {
           loading && <Spinner />
         }
@@ -103,7 +96,8 @@ class App extends Component {
         <div className="card-list_wrap">
           {!loading &&
             (selectedCategory === 'All' ? this.renderItems(cardList)
-              : this.renderItems(this.onCategoryFilter(cardList, selectedCategory)))}
+              : ( selectedCategory === 'Favorite' ? this.renderItems(this.onFavoriteFilter(cardList, `isFavorite`))
+              : this.renderItems(this.onCategoryFilter(cardList, selectedCategory))))}
         </div>
       </div>
     )
