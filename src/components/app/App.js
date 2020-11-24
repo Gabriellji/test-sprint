@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import "./App.css"
-import {NavbarData} from '../data/NavbarData'
-import Navbar from '../navbar/Navbar'
-import FoodPage from '../foodPage/FoodPage'
-import ClothesPage from '../clothesPage/ClothesPage'
-import ElectronicPage from '../electronicPage/ElectronicPage'
-import MisPage from '../misPage/MisPage'
-import RegisterPage from '../registerPage/RegisterPage'
-import LoginPage from '../loginPage/LoginPage'
+import React, { Component } from "react";
+import "./App.css";
+import { NavbarData } from "../data/NavbarData";
+import Navbar from "../navbar/Navbar";
+import FoodPage from "../foodPage/FoodPage";
+import ClothesPage from "../clothesPage/ClothesPage";
+import ElectronicPage from "../electronicPage/ElectronicPage";
+import MisPage from "../misPage/MisPage";
+import RegisterPage from "../registerPage/RegisterPage";
+import LoginPage from "../loginPage/LoginPage";
+import FooterApp from "../footer/FooterApp";
 class App extends Component {
-
   constructor(props) {
     super(props);
 
@@ -21,10 +21,10 @@ class App extends Component {
       electronicPage: false,
       misPage: false,
       registerPage: false,
-      loginPage: false
-    }
+      loginPage: false,
+    };
   }
-  navbarToggle = clickedTab => (
+  navbarToggle = (clickedTab) =>
     this.setState({
       homePage: false,
       foodPage: false,
@@ -33,57 +33,62 @@ class App extends Component {
       misPage: false,
       registerPage: false,
       loginPage: false,
-      [clickedTab] : true
-    })
-  )
+      [clickedTab]: true,
+    });
 
   render() {
     return (
-      <div>
+      <>
         <nav>
           <ul>
             {this.state.NavbarData.map((data, index) => (
-              <Navbar key={index} property={data.property} title={data.name} action={this.navbarToggle}/>
+              <Navbar
+                key={index}
+                property={data.property}
+                title={data.name}
+                action={this.navbarToggle}
+              />
             ))}
           </ul>
         </nav>
 
-        {this.state.homePage===true &&
-        <div>
-          <h1>i am the homepage</h1>
-        </div>
-                }
-        {this.state.foodPage===true &&
-        <div>
-          <FoodPage/>
-        </div>
-                }
-        {this.state.clothesPage===true &&
-        <div>
-          <ClothesPage/>
-        </div>
-                }
-        {this.state.electronicPage===true &&
-        <div>
-          <ElectronicPage/>
-        </div>
-                }
-        {this.state.misPage===true &&
-        <div>
-          <MisPage/>
-        </div>
-                }
-        {this.state.registerPage===true &&
-        <div>
-          <RegisterPage/>
-        </div>
-                }
-        {this.state.loginPage===true &&
-        <div>
-          <LoginPage/>
-        </div>
-                }
-      </div>
+        {this.state.homePage === true && (
+          <main>
+            <h1>i am the homepage</h1>
+          </main>
+        )}
+        {this.state.foodPage === true && (
+          <main>
+            <FoodPage />
+          </main>
+        )}
+        {this.state.clothesPage === true && (
+          <main>
+            <ClothesPage />
+          </main>
+        )}
+        {this.state.electronicPage === true && (
+          <main>
+            <ElectronicPage />
+          </main>
+        )}
+        {this.state.misPage === true && (
+          <main>
+            <MisPage />
+          </main>
+        )}
+        {this.state.registerPage === true && (
+          <main>
+            <RegisterPage />
+          </main>
+        )}
+        {this.state.loginPage === true && (
+          <main>
+            <LoginPage />
+          </main>
+        )}
+        <FooterApp />
+      </>
     );
   }
 }
