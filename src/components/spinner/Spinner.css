@@ -1,3 +1,10 @@
+.spinner_wrap {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: beige;
+}
+
 .loading {
     height: 0;
     width: 0;

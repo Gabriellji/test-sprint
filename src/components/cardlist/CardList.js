@@ -4,7 +4,7 @@ import './CardList.css'
 
 const CardList = () => {
         return (
-            <div className="card-list_wrap"></div>
+        <div className="card-list_wrap"></div>
         )
 }
 

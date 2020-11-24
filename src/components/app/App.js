@@ -15,7 +15,8 @@ class App extends Component {
   state = {
     cardList: null,
     loading: true,
-    selectedCategory: null
+    selectedCategory: 'All',
+    isFavorite: false
   };
 
   componentDidMount() {
@@ -31,6 +32,12 @@ class App extends Component {
       .catch(console.error());
   }
 
+  handleClickFavorite() {
+    this.setState({
+      isFavorite: !this.state.isFavorite
+    })
+  }
+
   renderItems(arr) {
     return arr.map(({ id, category, description, image, price, title }) => {
       return <Card
@@ -40,6 +47,7 @@ class App extends Component {
         image={image}
         price={price}
         title={title}
+        onFavoriteClick={this.handleClickFavorite}
       />
     });
   }
@@ -52,21 +60,21 @@ class App extends Component {
 
   onAllBtnClick = () => {
     this.setState({
-      selectedCategory: null
+      selectedCategory: 'all'
     });
   }
 
   renderButtons = (arr) => {
     const filtered = arr.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);
+      filtered.push('All');
     return filtered.map((element, index) =>
-     <Button
-      onCategoryBtnClick={this.onCategoryBtnClick}
-      category={element}
-      key={index} />)
+      <Button
+        onCategoryBtnClick={this.onCategoryBtnClick}
+        category={element}
+        key={index}
+      />)
   }
-
-
 
   onCategoryFilter = (arr, category) => arr.filter(item => item.category === category)
 
@@ -74,24 +82,29 @@ class App extends Component {
 
     const { cardList, loading, selectedCategory } = this.state;
 
-    const spinner = loading ? <Spinner /> : null;
+    // const spinner = loading ? <Spinner /> : null;
 
     return (
       <div className="App">
+        {/* {spinner} */}
+        {
+          loading && <Spinner />
+        }
         <h1>Hello Guys!</h1>
         {/* <CardList>
-
-            </CardList> */}
+          {!loading &&
+            (!selectedCategory ? this.renderItems(cardList)
+              : this.renderItems(this.onCategoryFilter(cardList, selectedCategory)))}
+        </CardList> */}
         <div className="btn_wrap">
-        <button
-        onClick={() => this.onAllBtnClick()}
-        >All</button>
+          {/* <button
+            onClick={() => this.onAllBtnClick()}
+          >All</button> */}
           {!loading && this.renderButtons(cardList)}
         </div>
         <div className="card-list_wrap">
-          {spinner}
           {!loading &&
-            (!selectedCategory ? this.renderItems(cardList)
+            (selectedCategory === 'All' ? this.renderItems(cardList)
               : this.renderItems(this.onCategoryFilter(cardList, selectedCategory)))}
         </div>
       </div>
