@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 
-const Card = ({ id, category, description, image, price, title, onFavoriteClick, isFavorite }) => (
+const Card = ({ category, description, image, price, title, onFavoriteClick, isFavorite, index}) => (
     <div className="card_wrap">
         <p>{category}</p>
         <h1 className="title">{title}</h1>
@@ -11,7 +11,7 @@ const Card = ({ id, category, description, image, price, title, onFavoriteClick,
         <div
           id="favorite"
           onClick={() => {
-            onFavoriteClick();
+            onFavoriteClick(index);
           }}
           className={isFavorite ? "isFavorite" : "notFavorite"}
         ></div>

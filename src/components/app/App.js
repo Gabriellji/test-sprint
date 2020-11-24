@@ -13,10 +13,9 @@ class App extends Component {
   commerceService = new CommerceService();
 
   state = {
-    cardList: null,
+    cardList: {},
     loading: true,
     selectedCategory: 'All',
-    isFavorite: false
   };
 
   componentDidMount() {
@@ -32,21 +31,23 @@ class App extends Component {
       .catch(console.error());
   }
 
-  handleClickFavorite() {
-    this.setState({
-      isFavorite: !this.state.isFavorite
-    })
+  handleClickFavorite = (index) => {
+    let newState = [...this.state.cardList];
+    newState[index].isFavorite = !newState[index].isFavorite;
+    this.setState({ cardList: newState });
   }
 
   renderItems(arr) {
-    return arr.map(({ id, category, description, image, price, title }) => {
+    return arr.map(({ id, category, description, image, price, title, isFavorite }) => {
       return <Card
         key={id}
+        index={id - 1}
         category={category}
         description={description}
         image={image}
         price={price}
         title={title}
+        isFavorite={isFavorite}
         onFavoriteClick={this.handleClickFavorite}
       />
     });
@@ -97,9 +98,6 @@ class App extends Component {
               : this.renderItems(this.onCategoryFilter(cardList, selectedCategory)))}
         </CardList> */}
         <div className="btn_wrap">
-          {/* <button
-            onClick={() => this.onAllBtnClick()}
-          >All</button> */}
           {!loading && this.renderButtons(cardList)}
         </div>
         <div className="card-list_wrap">
