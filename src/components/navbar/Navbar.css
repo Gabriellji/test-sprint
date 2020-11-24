@@ -1,9 +1,15 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    color: white;
 }
 
-li {
+nav {
+    width: 100%;
+    background-color: black;
+}
+nav li {
     width: 100%;
     padding: 16px 16px;
     text-align: center;
@@ -11,8 +17,8 @@ li {
     border: 2px solid black;
 }
 
-li:hover {
+nav li:hover {
     cursor: pointer;
     background-color: darkslategray;
-    
+
 }

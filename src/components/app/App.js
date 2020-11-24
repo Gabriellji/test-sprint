@@ -28,7 +28,7 @@ class App extends Component {
       password: "",
     };
   }
-  navbarToggle = clickedTab =>
+  navbarToggle = (clickedTab) =>
     this.setState({
       homePage: false,
       foodPage: false,
@@ -45,33 +45,26 @@ class App extends Component {
       loginPage: true,
     });
 
-  usernameChange = username =>
+  usernameChange = (username) =>
     this.setState({ username: username.target.value });
 
-  passwordChange = password =>
+  passwordChange = (password) =>
     this.setState({ password: password.target.value });
 
-  loginClick = event => {
+  loginClick = (event) => {
     event.preventDefault();
-    if(LoginData.find(user => user.username === this.state.username && user.password === this.state.password)) {
-      this.setState({ isLoggedIn: true })
+    if (
+      LoginData.find(
+        (user) =>
+          user.username === this.state.username &&
+          user.password === this.state.password
+      )
+    ) {
+      this.setState({ isLoggedIn: true });
     } else {
       alert("nope");
     }
-  }; /* this.setState({isLoggedIn:true}) */ /*  alert("wrong username/password") */ /* console.log("yes")
-      : */ /* console.log("no") */
-  /* {
-      user.username === this.state.username &&
-        user.password === this.state.password &&
-        this.setState({ isLoggedIn: true });
-    });!this.state.isLoggedIn && alert("nope")
-  };  */ /* this.state.username===LoginData[i].username && this.state.password===LoginData[i].password
-      ? */ /*  LoginData.filter(user =>
-        (
-          user.username===this.state.username && user.password===this.state.password
-          ? console.log("yes")
-          :console.log("no")
-        )) */
+  };
 
   render() {
     return (
@@ -88,26 +81,27 @@ class App extends Component {
             ))}
           </ul>
         </nav>
+{this.state.loginPage === true &&
+(this.state.isLoggedIn ? (
+  <div>Hello {this.state.username}</div>
+) : (
+  <form>
+    <input
+      placeholder="Username"
+      value={this.state.username}
+      onChange={this.usernameChange.bind(this)}
+    ></input>
+    <input
+      placeholder="Password"
+      value={this.state.password}
+      onChange={this.passwordChange.bind(this)}
+    ></input>
+    <button onClick={this.loginClick} type="submit">
+      Login
+    </button>
+  </form>
+))}
 
-        {this.state.isLoggedIn ? (
-          <div>Hello {this.state.username}</div>
-        ) : (
-          <form>
-            <input
-              placeholder="Username"
-              value={this.state.username}
-              onChange={this.usernameChange.bind(this)}
-            ></input>
-            <input
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.passwordChange.bind(this)}
-            ></input>
-            <button onClick={this.loginClick} type="submit">
-              Login
-            </button>
-          </form>
-        )}
 
         {this.state.homePage === true && (
           <main>
