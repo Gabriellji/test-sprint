@@ -4,15 +4,27 @@ export const NavbarData = [
         property: 'homePage'
     },
     {
-        name: "Buy",
-        property: 'buyPage'
+        name: "Food",
+        property: 'foodPage'
     },
     {
-        name: "Locals",
-        property: 'localsPage'
+        name: "Clothes",
+        property: 'clothesPage'
     },
     {
-        name: "Contact Us",
-        property: 'contactPage'
-    }
+        name: "Electronic",
+        property: 'electronicPage'
+    },
+    {
+        name: "Miscellaneous",
+        property: 'misPage'
+    },
+    {
+        name: "Register",
+        property: 'registerPage'
+    },
+    {
+        name: "Login",
+        property: 'loginPage'
+    },
 ]

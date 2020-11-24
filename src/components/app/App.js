@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import "./App.css"
 import {NavbarData} from '../data/NavbarData'
 import Navbar from '../navbar/Navbar'
-import Shop from '../shop/Shop'
+import FoodPage from '../foodPage/FoodPage'
+import ClothesPage from '../clothesPage/ClothesPage'
+import ElectronicPage from '../electronicPage/ElectronicPage'
+import MisPage from '../misPage/MisPage'
+import RegisterPage from '../registerPage/RegisterPage'
+import LoginPage from '../loginPage/LoginPage'
 class App extends Component {
 
   constructor(props) {
@@ -11,17 +16,23 @@ class App extends Component {
     this.state = {
       NavbarData,
       homePage: true,
-      buyPage: false,
-      localsPage: false,
-      contactPage: false,
+      foodPage: false,
+      clothesPage: false,
+      electronicPage: false,
+      misPage: false,
+      registerPage: false,
+      loginPage: false
     }
   }
   navbarToggle = clickedTab => (
     this.setState({
       homePage: false,
-      buyPage: false,
-      localsPage: false,
-      contactPage: false,
+      foodPage: false,
+      clothesPage: false,
+      electronicPage: false,
+      misPage: false,
+      registerPage: false,
+      loginPage: false,
       [clickedTab] : true
     })
   )
@@ -42,19 +53,34 @@ class App extends Component {
           <h1>i am the homepage</h1>
         </div>
                 }
-        {this.state.buyPage===true &&
-        <div className="wholeShop">
-          <Shop/>
+        {this.state.foodPage===true &&
+        <div>
+          <FoodPage/>
         </div>
                 }
-        {this.state.localsPage===true &&
+        {this.state.clothesPage===true &&
         <div>
-          <h1>i am the localsPage</h1>
+          <ClothesPage/>
         </div>
                 }
-        {this.state.contactPage===true &&
+        {this.state.electronicPage===true &&
         <div>
-          <h1>i am the contactPage</h1>
+          <ElectronicPage/>
+        </div>
+                }
+        {this.state.misPage===true &&
+        <div>
+          <MisPage/>
+        </div>
+                }
+        {this.state.registerPage===true &&
+        <div>
+          <RegisterPage/>
+        </div>
+                }
+        {this.state.loginPage===true &&
+        <div>
+          <LoginPage/>
         </div>
                 }
       </div>
