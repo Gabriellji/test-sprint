@@ -4,6 +4,24 @@
     justify-content: center;
 }
 
+.normal .card_wrap {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.grid .card_wrap {
+    width: 25%;
+}
+
+.list .card_wrap {
+    width: 100%;
+    flex-direction: unset;
+}
+
+.list .card_wrap img {
+    width: 44px
+}
+
 .btn_wrap {
     display: flex;
     justify-content: center;

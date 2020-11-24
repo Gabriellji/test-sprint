@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import CommerceService from '../../services/commerce-service';
 import Card from '../card/Card';
-//import CardList from '../cardlist/CardList';
+import CardList from '../cardlist/CardList';
 import Button from '../button/Button';
 import Spinner from '../spinner/Spinner';
+
 import './App.css';
+import TransformBtn from './transform-view-button/TransformBtn';
 
 
 class App extends Component {
@@ -16,6 +18,7 @@ class App extends Component {
     cardList: {},
     loading: true,
     selectedCategory: 'All',
+    view: 'grid'
   };
 
   componentDidMount() {
@@ -75,30 +78,32 @@ class App extends Component {
 
   onFavoriteFilter = (arr, category) => arr.filter(item => item[category] === true)
 
+  onTransformBtnClick = (e) => this.setState({ view: e.target.innerText})
+
   render() {
 
-    const { cardList, loading, selectedCategory } = this.state;
+    const { cardList, loading, selectedCategory, view } = this.state;
 
     return (
       <div className="App">
-        {
-          loading && <Spinner />
-        }
+        { loading && <Spinner /> }
         <h1>Hello Guys!</h1>
-        {/* <CardList>
-          {!loading &&
-            (!selectedCategory ? this.renderItems(cardList)
-              : this.renderItems(this.onCategoryFilter(cardList, selectedCategory)))}
-        </CardList> */}
+
         <div className="btn_wrap">
-          {!loading && this.renderButtons(cardList)}
+          { !loading && this.renderButtons(cardList) }
         </div>
-        <div className="card-list_wrap">
-          {!loading &&
+
+        <TransformBtn
+        el={view}
+        onTransformBtnClick={this.onTransformBtnClick}
+        />
+        
+        <CardList>
+        {!loading &&
             (selectedCategory === 'All' ? this.renderItems(cardList)
               : ( selectedCategory === 'Favorite' ? this.renderItems(this.onFavoriteFilter(cardList, `isFavorite`))
               : this.renderItems(this.onCategoryFilter(cardList, selectedCategory))))}
-        </div>
+        </CardList>
       </div>
     )
   }
