@@ -31,6 +31,7 @@
 .btn_wrap button {
     font-size: 2vw;
     padding: 1rem;
+    cursor: pointer;
 }
 
 .cart {
