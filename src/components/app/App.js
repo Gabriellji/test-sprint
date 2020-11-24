@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import CommerceService from '../../services/commerce-service';
 import Card from '../card/Card';
-import CardList from '../cardlist/CardList';
 import Button from '../button/Button';
 import Spinner from '../spinner/Spinner';
 
@@ -86,24 +85,23 @@ class App extends Component {
 
     return (
       <div className="App">
-        { loading && <Spinner /> }
+        {
+          loading && <Spinner />
+        }
         <h1>Hello Guys!</h1>
-
         <div className="btn_wrap">
-          { !loading && this.renderButtons(cardList) }
+          {!loading && this.renderButtons(cardList)}
         </div>
-
         <TransformBtn
         el={view}
         onTransformBtnClick={this.onTransformBtnClick}
         />
-        
-        <CardList>
-        {!loading &&
+        <div className={`card-list_wrap ${view}`}>
+          {!loading &&
             (selectedCategory === 'All' ? this.renderItems(cardList)
               : ( selectedCategory === 'Favorite' ? this.renderItems(this.onFavoriteFilter(cardList, `isFavorite`))
               : this.renderItems(this.onCategoryFilter(cardList, selectedCategory))))}
-        </CardList>
+        </div>
       </div>
     )
   }
