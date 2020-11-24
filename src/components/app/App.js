@@ -7,6 +7,7 @@ import Spinner from '../spinner/Spinner';
 
 import './App.css';
 import TransformBtn from './transform-view-button/TransformBtn';
+import ShoppingCart from '../shopping-cart/ShoppingCart';
 
 
 class App extends Component {
@@ -17,7 +18,9 @@ class App extends Component {
     cardList: {},
     loading: true,
     selectedCategory: 'All',
-    view: 'grid'
+    view: 'grid',
+    countItem: 0,
+    showItem: false
   };
 
   componentDidMount() {
@@ -39,6 +42,35 @@ class App extends Component {
     this.setState({ cardList: newState });
   }
 
+  findAddedItem = (arr) => {
+    return arr.filter(item => !(!item.addedToCart))
+  }
+
+  renderAddedItems = (arr) => {
+    return arr.map(({ title, price }, i) => {
+      return <ShoppingCart
+        key={i}
+        title={title}
+        price={price}
+      />
+    })
+  }
+
+  count = 0; 
+
+  onAddToCartClick = (index) => {
+    let newState = [...this.state.cardList];
+    newState[index].addedToCart = true;
+    this.count++
+    this.setState({ 
+      cardList: newState, 
+      countItem: this.count
+     });
+    this.findAddedItem(this.state.cardList);
+  }
+
+
+
   renderItems(arr) {
     return arr.map(({ id, category, description, image, price, title, isFavorite }) => {
       return <Card
@@ -51,6 +83,8 @@ class App extends Component {
         title={title}
         isFavorite={isFavorite}
         onFavoriteClick={this.handleClickFavorite}
+        addBtnText={'Add to cart'}
+        onAddToCartClick={this.onAddToCartClick}
       />
     });
   }
@@ -64,7 +98,7 @@ class App extends Component {
   renderButtons = (arr) => {
     const filtered = arr.map(item => item.category)
       .filter((value, index, self) => self.indexOf(value) === index);
-      filtered.push('Favorite', 'All');
+    filtered.push('Favorite', 'All');
     return filtered.map((element, index) =>
       <Button
         onCategoryBtnClick={this.onCategoryBtnClick}
@@ -73,15 +107,22 @@ class App extends Component {
       />)
   }
 
+
+  showItems = () => {
+    this.setState({
+      showItem: !this.state.showItem
+    });
+  }
+
   onCategoryFilter = (arr, category) => arr.filter(item => item.category === category)
 
-  onFavoriteFilter = (arr, category) => arr.filter(item => item[category] === true)
+  onFavoriteFilter = (arr, category) => arr.filter(item => !(!item[category]))
 
-  onTransformBtnClick = (e) => this.setState({ view: e.target.innerText})
+  onTransformBtnClick = (e) => this.setState({ view: e.target.innerText })
 
   render() {
 
-    const { cardList, loading, selectedCategory, view } = this.state;
+    const { cardList, loading, selectedCategory, view, countItem, showItem } = this.state;
 
     return (
       <div className="App">
@@ -89,18 +130,27 @@ class App extends Component {
           loading && <Spinner />
         }
         <h1>Hello Guys!</h1>
+        <div 
+        className={`cart ${showItem}`}
+        onClick={this.showItems}
+        >
+      <span className="count">{countItem} items</span>
+          {
+            !loading && this.renderAddedItems(this.findAddedItem(cardList))
+          }
+        </div>
         <div className="btn_wrap">
           {!loading && this.renderButtons(cardList)}
         </div>
         <TransformBtn
-        el={view}
-        onTransformBtnClick={this.onTransformBtnClick}
+          el={view}
+          onTransformBtnClick={this.onTransformBtnClick}
         />
         <div className={`card-list_wrap ${view}`}>
           {!loading &&
             (selectedCategory === 'All' ? this.renderItems(cardList)
-              : ( selectedCategory === 'Favorite' ? this.renderItems(this.onFavoriteFilter(cardList, `isFavorite`))
-              : this.renderItems(this.onCategoryFilter(cardList, selectedCategory))))}
+              : (selectedCategory === 'Favorite' ? this.renderItems(this.onFavoriteFilter(cardList, `isFavorite`))
+                : this.renderItems(this.onCategoryFilter(cardList, selectedCategory))))}
         </div>
       </div>
     )

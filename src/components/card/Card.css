@@ -17,6 +17,12 @@
     font-size: 1.4vw;
 }
 
+.price {
+    font-size: 3vw;
+    font-weight: bold;
+    color: rgb(49, 139, 0);
+}
+
 img {
     width: 200px;
 }
@@ -35,4 +41,9 @@ img {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4f/Ei-heart.svg");
     background-size: 100%;
     align-self: flex-start;
+  }
+
+  .addToCart_btn {
+      font-size: 1.5vw;
+      padding: .5rem;
   }
