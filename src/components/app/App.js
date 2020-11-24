@@ -47,9 +47,11 @@ class App extends Component {
   loginClick = (event) => {
     event.preventDefault()
     for (let i=0; i<LoginData.length; i++){
-      this.state.username===LoginData[i].username && this.state.password===LoginData[i].password ?
-      this.setState({isLoggedIn:true})
-      : alert("wrong username/password")
+      this.state.username===LoginData[i].username && this.state.password===LoginData[i].password 
+      ?/* this.setState({isLoggedIn:true}) */
+      console.log("yes")
+      :/*  alert("wrong username/password") */
+      console.log("no")
     }
   }
 
