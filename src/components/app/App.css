@@ -14,3 +14,17 @@ nav ul {
 nav {
     width: 100%;
     background-color: black;
+}
+
+li {
+    width: 100%;
+    padding: 16px 16px;
+    text-align: center;
+    transition: 0.5s;
+    border: 2px solid black;
+}
+
+li:hover {
+    cursor: pointer;
+    background-color: darkslategray;
+}
