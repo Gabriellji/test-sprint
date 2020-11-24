@@ -4,36 +4,52 @@ export default class CommerceService {
 
     async getResourse(url) {
         const res = await fetch(`${this._apiBase}${url}`);
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}` +
+                `, received ${res.status}`)
+        }
         return await res.json();
     }
 
     async getAllProducts() {
-        const res = await fetch(this._apiBase);
-        return await res.json();
+        const res = await this.getResourse('');
+        return res.map(this._transformCardList);
     }
 
     async getSingleProduct(id) {
-        const res = await this.getResourse(`/${id}`);
-        return await res.json();
+        const product = await this.getResourse(`/${id}`);
+        return this._transformCardList(product);
     }
 
     async getLimitResults(num) {
         const res = await this.getResourse(`/?limit=${num}`);
-        return await res.json();
+        return res.map(this._transformCardList);
     }
 
     async getSortResults(value) {  //value =  'desc' || 'asc'
         const res = await this.getResourse(`/?sort=${value}`);
-        return await res.json();
+        return res.map(this._transformCardList);
     }
 
     async getSpecificCategory(category) {
         const res = await this.getResourse(`/category/${category}`);
-        return await res.json();
+        return res.map(this._transformCardList);
     }
 
     async getLimitSortCategory(category, limit, sort) {
         const res = await this.getResourse(`/category/${category}?limit=${limit}&sort=${sort}`);
-        return await res.json();
+        return res.map(this._transformCardList);
+    }
+
+    _transformCardList = (data) => {
+        return {
+            category: data.category,
+            description: data.description,
+            id: data.id,
+            image: data.image,
+            price: data.price,
+            title: data.title,
+            isFavorite: false
+        }
     }
 }
