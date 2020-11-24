@@ -1,18 +1,18 @@
 export const FooterLinkData = [
   {
     name: "link1",
-    url: "www.facebook.com",
+    url: "https://www.facebook.com/",
   },
   {
     name: "link2",
-    url: "www.google.com",
+    url: "https://www.google.com",
   },
   {
     name: "link3",
-    url: "www.wildcodeschool.com",
+    url: "https://www.wildcodeschool.com",
   },
   {
     name: "link4",
-    url: "www.linkedin.com",
+    url: "https://www.linkedin.com",
   },
 ];

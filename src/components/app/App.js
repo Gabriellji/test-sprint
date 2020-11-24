@@ -7,13 +7,14 @@ import ClothesPage from "../clothesPage/ClothesPage";
 import ElectronicPage from "../electronicPage/ElectronicPage";
 import MisPage from "../misPage/MisPage";
 import RegisterPage from "../registerPage/RegisterPage";
-import LoginPage from "../loginPage/LoginPage";
 import FooterApp from "../footer/FooterApp";
+import {LoginData} from "../data/LoginData"
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      LoginData,
       NavbarData,
       homePage: true,
       foodPage: false,
@@ -22,6 +23,9 @@ class App extends Component {
       misPage: false,
       registerPage: false,
       loginPage: false,
+      isLoggedIn: false,
+      username: "",
+      password:"",
     };
   }
   navbarToggle = (clickedTab) =>
@@ -35,6 +39,19 @@ class App extends Component {
       loginPage: false,
       [clickedTab]: true,
     });
+  loginToggle = () => this.setState({
+    loginPage: true
+  })
+  usernameChange = username => this.setState({username: username.target.value})
+  passwordChange = password => this.setState({password: password.target.value})
+  loginClick = (event) => {
+    event.preventDefault()
+    for (let i=0; i<LoginData.length; i++){
+      this.state.username===LoginData[i].username && this.state.password===LoginData[i].password ?
+      this.setState({isLoggedIn:true})
+      : alert("wrong username/password")
+    }
+  }
 
   render() {
     return (
@@ -52,6 +69,14 @@ class App extends Component {
           </ul>
         </nav>
 
+        {this.state.loginPage === true && (
+          <form>
+            <input placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)}></input>
+            <input placeholder="Password" value={this.state.password} onChange={this.passwordChange.bind(this)}></input>
+            <button onClick={this.loginClick} type="submit">Login</button>
+        </form>
+        )}
+        
         {this.state.homePage === true && (
           <main>
             <h1>i am the homepage</h1>
@@ -80,11 +105,6 @@ class App extends Component {
         {this.state.registerPage === true && (
           <main>
             <RegisterPage />
-          </main>
-        )}
-        {this.state.loginPage === true && (
-          <main>
-            <LoginPage />
           </main>
         )}
         <FooterApp />
