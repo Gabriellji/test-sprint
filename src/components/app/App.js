@@ -4,6 +4,7 @@ import CommerceService from '../../services/commerce-service';
 import Card from '../card/Card';
 //import CardList from '../cardlist/CardList';
 import Button from '../button/Button';
+import Spinner from '../spinner/Spinner';
 import './App.css';
 
 
@@ -53,7 +54,6 @@ class App extends Component {
     this.setState({
       selectedCategory: null
     });
-    // this.renderItems(arr)
   }
 
   renderButtons = (arr) => {
@@ -74,6 +74,8 @@ class App extends Component {
 
     const { cardList, loading, selectedCategory } = this.state;
 
+    const spinner = loading ? <Spinner /> : null;
+
     return (
       <div className="App">
         <h1>Hello Guys!</h1>
@@ -87,6 +89,7 @@ class App extends Component {
           {!loading && this.renderButtons(cardList)}
         </div>
         <div className="card-list_wrap">
+          {spinner}
           {!loading &&
             (!selectedCategory ? this.renderItems(cardList)
               : this.renderItems(this.onCategoryFilter(cardList, selectedCategory)))}
