@@ -1,5 +1,9 @@
 export const NavbarData = [
     {
+        name: "FAKE LOGO",
+        property: 'logo'
+    },
+    {
         name: "Home",
         property: 'homePage'
     },
