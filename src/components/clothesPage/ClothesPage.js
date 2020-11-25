@@ -129,7 +129,6 @@ class ClothesPage extends Component {
         {
           loading && <Spinner />
         }
-        <h1>Hello Guys!</h1>
         <div 
         className={`cart ${showItem}`}
         onClick={this.showItems}
