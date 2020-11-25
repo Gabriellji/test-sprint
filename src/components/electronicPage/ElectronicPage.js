@@ -4,7 +4,7 @@ class ElectronicPage extends Component {
     render() {
         return (
             <div>
-                i am the electronic!
+                Local sellers
             </div>
         );
     }
