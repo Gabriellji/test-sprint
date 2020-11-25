@@ -1,0 +1,10 @@
+.transform_btn {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.transform_btn button {
+    font-size: 2vw;
+    padding: .5rem;
+}
