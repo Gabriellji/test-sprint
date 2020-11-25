@@ -4,7 +4,7 @@ class ClothesPage extends Component {
     render() {
         return (
             <div>
-                i am the food!
+                Our mission
             </div>
         );
     }

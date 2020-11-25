@@ -8,19 +8,19 @@ export const NavbarData = [
         property: 'homePage'
     },
     {
-        name: "Food",
+        name: "Our mission",
         property: 'foodPage'
     },
     {
-        name: "Clothes",
+        name: "Shop",
         property: 'clothesPage'
     },
     {
-        name: "Electronic",
+        name: "Local sellers",
         property: 'electronicPage'
     },
     {
-        name: "Miscellaneous",
+        name: "About Us",
         property: 'misPage'
     },
     {
