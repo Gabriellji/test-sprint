@@ -1,0 +1,57 @@
+.card-list_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.normal .card_wrap {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.grid .card_wrap {
+    width: 25%;
+}
+
+.list .card_wrap {
+    width: 100%;
+    flex-direction: unset;
+}
+
+.list .card_wrap img {
+    width: 44px
+}
+
+.btn_wrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.btn_wrap button {
+    font-size: 2vw;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.cart {
+    position: fixed;
+    cursor: pointer;
+    left: 2rem;
+    top: 6rem;
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    padding: 2rem;
+    border: 1px solid grey;
+    border-radius: 10px;
+    transition: all .25s ease-in-out;
+}
+
+.cart:hover {
+    background-color: darksalmon;
+}
+
+.count {
+    font-weight: bold;
+}
