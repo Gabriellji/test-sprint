@@ -1,0 +1,17 @@
+.cart_item {
+    display: none;
+    flex-direction: column;
+    padding: .5rem;
+    max-width: 200px;
+}
+
+.cart-price {
+    margin: .5rem;
+    font-size: 20px;
+    font-weight: bold;
+    color: darkgreen;
+}
+
+.true .cart_item {
+    display: flex;
+}
